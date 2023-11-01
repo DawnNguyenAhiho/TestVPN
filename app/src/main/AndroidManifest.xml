@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TestVPN"
+        tools:targetApi="34">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="de.blinkt.openvpn.core.OpenVPNService"
+            android:permission="android.permission.BIND_VPN_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="de.blinkt.openvpn.activities.DisconnectVPN"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:taskAffinity=".DisconnectVPN"
+            android:theme="@style/blinkt.dialog" />
+
+        <!-- Activities and services inherited from the OpenVPN library. -->
+<!--        <service-->
+<!--            android:name="de.blinkt.openvpn.core.OpenVPNService"-->
+<!--            android:exported="true"-->
+<!--            android:foregroundServiceType="specialUse"-->
+<!--            android:permission="android.permission.BIND_VPN_SERVICE">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.net.VpnService" />-->
+<!--            </intent-filter>-->
+<!--            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="vpn"/>-->
+<!--        </service>-->
+
+<!--        <service android:name="de.blinkt.openvpn.core.keepVPNAlive"-->
+<!--            android:process=":openvpn"-->
+<!--            android:exported="true"-->
+<!--            android:permission="android.permission.BIND_JOB_SERVICE"/>-->
+
+<!--        <service-->
+<!--            android:name="de.blinkt.openvpn.api.ExternalOpenVPNService"-->
+<!--            android:exported="false"-->
+<!--            tools:ignore="ExportedService">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="de.blinkt.openvpn.api.IOpenVPNAPIService" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+<!--        <activity-->
+<!--            android:name="de.blinkt.openvpn.activities.DisconnectVPN"-->
+<!--            android:autoRemoveFromRecents="true"-->
+<!--            android:excludeFromRecents="true"-->
+<!--            android:noHistory="true"-->
+<!--            android:taskAffinity=".DisconnectVPN"-->
+<!--            android:theme="@style/blinkt.dialog"-->
+<!--            tools:ignore="UnusedAttribute" />-->
+
+
+<!--        <service-->
+<!--            android:name="de.blinkt.openvpn.OpenVPNTileService"-->
+<!--            android:icon="@drawable/logo_black"-->
+<!--            android:label="@string/qs_title"-->
+<!--            android:exported="true"-->
+<!--            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"-->
+<!--            android:value="true"-->
+<!--            tools:replace="android:icon">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.service.quicksettings.action.QS_TILE" />-->
+<!--            </intent-filter>-->
+
+<!--            <meta-data-->
+<!--                android:name="android.service.quicksettings.ACTIVE_TILE"-->
+<!--                android:value="false" />-->
+<!--        </service>-->
+
+<!--        <service-->
+<!--            android:name="de.blinkt.openvpn.core.OpenVPNStatusService"-->
+<!--            android:exported="false" />-->
+
+<!--        <activity-->
+<!--            android:name="de.blinkt.openvpn.api.GrantPermissionsActivity"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/StyledVpn">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
+<!--        <activity-->
+<!--            android:name="de.blinkt.openvpn.api.ConfirmDialog"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/StyledVpn">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name="de.blinkt.openvpn.LaunchVPN"-->
+<!--            android:autoRemoveFromRecents="true"-->
+<!--            android:excludeFromRecents="true"-->
+<!--            android:exported="false"-->
+<!--            android:label="@string/vpn_launch_title"-->
+<!--            android:taskAffinity=".LaunchVPN"-->
+<!--            android:theme="@style/StyledVpn.Dialog"-->
+<!--            tools:ignore="ExportedActivity">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
+<!--&lt;!&ndash;        <activity-alias&ndash;&gt;-->
+<!--&lt;!&ndash;            android:name="nl.eduvpn.app.activities.LogWindow"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:targetActivity="de.blinkt.openvpn.activities.LogWindow" />&ndash;&gt;-->
+
+<!--        <activity-->
+<!--            android:name="de.blinkt.openvpn.activities.LogWindow"-->
+<!--            android:allowTaskReparenting="true"-->
+<!--            android:label="@string/openvpn_log"-->
+<!--            android:launchMode="singleTask"-->
+<!--            android:parentActivityName=".MainActivity"-->
+<!--            android:theme="@style/StyledVpn"-->
+<!--            tools:ignore="UnusedAttribute">-->
+
+<!--            &lt;!&ndash; Parent activity meta-data to support 4.0 and lower &ndash;&gt;-->
+<!--&lt;!&ndash;            <meta-data&ndash;&gt;-->
+<!--&lt;!&ndash;                android:name="android.support.PARENT_ACTIVITY"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:value=".MainActivity" />&ndash;&gt;-->
+
+<!--        </activity>-->
+
+<!--        <activity android:name=".ApiLogsActivity"-->
+<!--            android:launchMode="singleTask"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/AppTheme.NoActionBar" />-->
+
+<!--        <activity-->
+<!--            android:name=".LicenseActivity"-->
+<!--            android:launchMode="singleTask"-->
+<!--            android:theme="@style/AppTheme.NoActionBar" />-->
+
+<!--        &lt;!&ndash; Remove the MainActivity of the ICS-OpenVPN library&ndash;&gt;-->
+<!--        <activity-->
+<!--            android:name="de.blinkt.openvpn.activities.MainActivity"-->
+<!--            tools:node="remove" />-->
+
+<!--        <meta-data-->
+<!--            android:name="android.content.APP_RESTRICTIONS"-->
+<!--            android:resource="@xml/app_restrictions" />-->
+
+    </application>
+
+</manifest>
